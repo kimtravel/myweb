@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+    box-sizing: border-box;
+}
+
+.real{
+    width: 1920px;
+    height: 1300px;
+
+}
+header{
+   font-size: 23px;
+   font-weight: bold;
+   color: blue;
+    padding-top: 10px;
+}
+.first{
+text-align: left;
+background-color: antiquewhite;
+width: 50%;
+float: left;
+border-right: 1px solid black;
+padding-left: 3%;
+height: 1300px;
+}
+.first1 img{
+    width: 400px;
+    height: 100px;
+    -o-object-fit: contain;
+    border: 1px solid black;
+}
+#first2{
+    font-weight: bold;
+    font-size: 20px;
+}
+#first3{
+    color: red;
+    font-weight: bold;
+
+}
+span{
+    color: blue;
+    font-weight: bold;
+}
+
+.second{
+    padding: 1%;
+   
+    width: 50%;
+    float: right;
+    background-color: antiquewhite;
+    height: 1300px;
+}
+.second #ssss{
+   
+    font-weight: bold;
+    font-size: 20px;
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="real">
+         <header>
+        JDBC프로그래밍
+    </header>
+    <br>
+<div class="first">
+<div class="first1">
+    <br>
+    <p id="first2">첫번째 단계. 데이터베이스와의 연결</p>
+    <p>데이터베이스와의 연결을 위해서는 우선 데이터베이스의 JDBC드라이버의 로드가 이루어져야한다</p>
+    <P>JDBC드라이버를 로드하기 위해 드라이버 클래스 파일을 로드한다</P>
+    <p>자바의 Class클래스의 forName()메소드를 이용하면 특정 클래스 파일을 읽어드릴 수 있다</p>
+        <br>
+    <p id="first3">Class.forName()함수 = 문자열이름만으로 자바클래스를 메모리에 동적으로 로드하고 초기화하는 정적메서드이다</p>
+        <br>
+        <img src="trycatch.JPG">
+    <p> 위 사진상의 코드는 mysql의 JDBC드라이버인  com.mysql.jdbc.Driver클래스를 로드하여 드라이버 인스턴스를 생성하고 DriverManager에 등록한다.</p>
+    <br>
+    <p id="first3">DriverManager클래스는 그림에서의 JDBC드라이버 매니저 역할을 하는 클래스</p>
+        <br>
+    <P>JDBC드라이버의 클래스의 이름은 다 다를수 있다.</P>
+    <P>로드 중 드라이버가 없으면 예외오류가 발생하므로 <span>반드시 try/catch문</span>을 사용한다</P>
+    <p>DriverManager는 자바 응용프로그램을 JDBC 드라이버에 연결시켜주는 클래스이다.</p>
+    <p>아래 코드와 같이 DriverManager.getConnection() 메소드를 호출하여 데이터베이스에 연결하고 Connection 객체를 반환한다.</p>
+        <img src="connetion.JPG">
+    <ul >
+    <li> getConnection()에서 jdbc: 이후에 지정되는 URL 형식은 DBMS에 따라 다르므로 JDBC 문서 참조</li>
+    <li>MySQL 서버가 현재 동일한 컴퓨터에서 동작하므로 서버 주소를 localhost로 지정</li>
+    <li>MySQL의 경우 디폴트로 3306 포트를 사용</li>
+    <li> sampledb는 앞서 생성한 DB의 이름</li>
+    <li> "root"는 DB에 로그인할 계정 이름이며, ""는 root의 패스워드</li>
+    </ul>
+    <br>
+    <br>
+
+    <br>
+    <br>
+</div>
+</div>
+
+
+
+
+
+<div class="second">
+    <p id="ssss">두번째 단계 데이터베이스에서의 사용</p>
+    <br>
+<div class="second1">
+    <p>자바에서 데이터베이스에 연결 후에는 16.3절에서 설명한 MySQL 명령행 도구에서 사용한 SQL 문을 똑같이 사용하여 데이터베이스에 접근한다</p>
+    <p>자바에서 SQL문을 실행하기 위해서는 <span>Statement 클래스</span>를 이용하고, SQL문 실행 결과를 얻어오기 위해서는 <span>ResultSet</span> 클래스를 이용한다</p>
+    <p>Statement 클래스에서 자주 사용되는 메소드는 표와 같다</p>
+        <img src="database.JPG">
+    <p>데이터를 검색하기 위해서는 executeQuery() 메소드를 사용하고, 추가, 수정, 삭제와 같이 데이터 변경은 executeUpdate() 메소드를 이용한다.</p>    
+    <p> 같이 데이터 변경은 executeUpdate() 메소드를 이용한다.</p>
+    <p>ResultSet 객체는 현재 데이터의 행(레코드 위치)을 가리키는 커서(cursor)를 관리한다. 초기 값은 첫 번째 행 이전을 가리키도록 되어있다.</p>
+    <p>따라서 ResultSet 클래스는 주로 커서의 위치와 관련된 메소드와 레코드를 가져오는 메소드를 제공한다. </p>
+    <p>ResultSet 클래스에서 자주 사용되는 메소드는 표 16-4와 같다.</p>
+        <img src="database2.JPG">
+   
+
+</div>
+</div>
+
+
+</body>
+</html>
