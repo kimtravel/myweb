@@ -1,178 +1,418 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" class="h-full">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>미쳐 하지 못했던 말 - 감성 메시지 카드</title>
+    <!-- Tailwind CSS (인트로 파티클 및 레이아웃용) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@400;700&family=Gowun+Batang:wght@400;700&family=Nanum+Gothic&display=swap" rel="stylesheet">
 
     <style>
-        .site{
-            width: 1000px;
-            height: 1000px;
-            background-color: bisque;
-        }
-        .hea{
-            height: 100px;
-            text-align: center;
-        }
-        .hea img{
-            float: left;
-            width: 100px;
-            height: 100px;
-            margin-left: 10%;
-        }
-        .hea a{
-            color: black;
-            text-decoration: none;
-        }
-        .left1{
-            width: 200px;
-            height: 800px;
-            float: left;
-            padding: 0;
+        * {
+            box-sizing: border-box;
             margin: 0;
+            padding: 0;
         }
-      
-        
-        .menu1{
-            background-color: white;
+
+        body {
+            background-color: #000000;
+            color: #E5E1DA;
+            font-family: "Nanum Gothic", sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* 인트로 애니메이션 스타일 */
+        @keyframes fadeInMoveUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+                filter: blur(8px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+                filter: blur(0);
+            }
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(1.05); pointer-events: none; }
+        }
+
+        .intro-text-1 { animation: fadeInMoveUp 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; }
+        .intro-text-2 { animation: fadeInMoveUp 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; animation-delay: 2s; }
+        .intro-text-3 { animation: fadeInMoveUp 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; animation-delay: 4s; }
+        .intro-text-4 { animation: fadeInMoveUp 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; animation-delay: 6s; }
+        .intro-text-5 { animation: fadeInMoveUp 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; animation-delay: 8s; }
+
+        .fade-out-screen {
+            animation: fadeOut 1.2s ease forwards;
+        }
+
+        @keyframes floatParticle {
+            0% { transform: translateY(105vh) translateX(0); opacity: 0; }
+            20% { opacity: 0.8; }
+            80% { opacity: 0.8; }
+            100% { transform: translateY(-10vh) translateX(40px); opacity: 0; }
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: floatParticle linear infinite;
+        }
+
+        /* 메인 카드 컨테이너 영역 */
+        #main-content {
+            opacity: 0;
+            transition: opacity 1.2s ease;
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 150px;
-            height: 100px;
-            border: 1px solid black;
-            box-sizing: border-box;
-            line-height: 180%;
-    
-        }
-         
-        
-        .menu1:hover {
-            background-color: orangered;
-        }
-        .menu a{
-            color: black;
-            text-decoration: none;
+            min-height: 100vh;
+            padding: 40px 20px;
         }
 
-
-        .qn1{
-            background-color: white;
+        .card-container {
+            width: 520px;
+            background-color: #121214;
+            border: 1px solid #222226;
+            border-radius: 24px;
+            padding: 40px 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            width: 150px;
-            height: 85px;
-            border: 1px solid black;
-            box-sizing: border-box;
-            line-height: 180%;
-            text-align: center;
-
-        }
-      
-        #qn2{
-            font-size: 30PX;
             text-align: center;
         }
 
-
-        .right1{
-            float: right;
-            width: 75%;
-            height: 800px;
-          
-        }
-        .right1 img{
-            width: 648px;
-            height: 480px;
-        }
-        .realmenu{
-            list-style-type: none;
-            display: grid;
-            grid-template-columns: 180px 180px 180px;
-            gap: 15px;
-        }
-        .realmenu img{
-            width: 180px;
-            height: 110px;
-        }
-        
-            
-
-        
-        .footer{
-            height: 100px;
-            clear: both;
+        .title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
             text-align: center;
-            background-color: gray;
-        }
-        .footer img{
-            float: left;
-            width: 90px;
-            height: 90px;
-            margin-left: 7%;
-        }
-        .last{
-            list-style-type: none;
-            display: grid;
-            grid-template-columns: 200px 500px;
-            justify-content: space-between
-            
+            color: #ffffff;
         }
 
+        .subtitle {
+            font-size: 0.85rem;
+            color: #888888;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* 폰트 선택 영역 박스 */
+        .font-selector-box {
+            width: 100%;
+            background-color: #18181b;
+            border: 1px solid #2a2a2e;
+            border-radius: 16px;
+            padding: 18px 24px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .font-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .font-option input[type="radio"] {
+            accent-color: #ff3366;
+            cursor: pointer;
+            width: 16px;
+            height: 16px;
+        }
+
+        .font-option label {
+            cursor: pointer;
+            font-size: 1rem;
+            color: #cccccc;
+            transition: color 0.2s;
+        }
+
+        #gaegu:checked + label {
+            font-family: "Dongle", sans-serif;
+            font-size: 1.5rem;
+            color: #ff3366;
+            font-weight: 700;
+        }
+
+        #namu:checked + label {
+            font-family: "Nanum Gothic", sans-serif;
+            color: #ff3366;
+            font-weight: 700;
+        }
+
+        /* 공통 입력창 스타일 */
+        .send, .textarea-box, .from {
+            width: 100%;
+            background-color: #18181b;
+            border: 1px solid #2a2a2e;
+            color: #e5e1da;
+            resize: none;
+            outline: none;
+            text-align: left;
+            overflow-y: auto;
+            transition: all 0.3s ease;
+            scrollbar-width: none;
+        }
+
+        .send::-webkit-scrollbar,
+        .textarea-box::-webkit-scrollbar,
+        .from::-webkit-scrollbar {
+            display: none;
+        }
+
+        .send, .from {
+            height: 50px;
+            max-height: 50px;
+            border-radius: 15px;
+            padding: 12px 20px;
+            margin-bottom: 15px;
+        }
+
+        .textarea-box {
+            height: 180px;
+            max-height: 180px;
+            border-radius: 16px;
+            padding: 20px;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        /* [변경됨] 받는 이보다 위쪽에 위치할 카테고리 드롭다운 메뉴 스타일 */
+        .category-wrapper {
+            position: relative;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        .category-btn {
+            width: 100%;
+            height: 50px;
+            background-color: #18181b;
+            border: 1px solid #2a2a2e;
+            color: #a1a1aa;
+            border-radius: 15px;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .category-btn:hover {
+            border-color: #ff3366;
+            color: #ffffff;
+        }
+
+        .category-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: #1e1e24;
+            border: 1px solid #ff3366;
+            border-radius: 12px;
+            margin-top: 5px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            overflow: hidden;
+            z-index: 10;
+            display: none;
+        }
+
+        .category-item {
+            padding: 12px 20px;
+            font-size: 0.95rem;
+            color: #cccccc;
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s;
+            text-align: left;
+        }
+
+        .category-item:hover {
+            background-color: #ff3366;
+            color: #ffffff;
+        }
+
+        .category-wrapper:hover .category-menu {
+            display: block;
+        }
+
+        .send:focus, .textarea-box:focus, .from:focus {
+            border-color: #ff3366;
+        }
+
+        /* 하단 저장 버튼 */
+        .save-btn {
+            width: 100%;
+            background-color: #e61956;
+            color: #ffffff;
+            border: none;
+            border-radius: 14px;
+            padding: 16px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        .save-btn:hover {
+            background-color: #cc124b;
+        }
+
+        .save-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* 폰트 연동 */
+        .card-container:has(#gaegu:checked) .send,
+        .card-container:has(#gaegu:checked) .from,
+        .card-container:has(#gaegu:checked) .category-btn,
+        .card-container:has(#gaegu:checked) .category-item {
+            font-family: "Dongle", sans-serif;
+            font-size: 26px;
+        }
+
+        .card-container:has(#gaegu:checked) .textarea-box {
+            font-family: "Dongle", sans-serif;
+            font-size: 30px;
+        }
+
+        .card-container:has(#namu:checked) .send,
+        .card-container:has(#namu:checked) .from,
+        .card-container:has(#namu:checked) .textarea-box,
+        .card-container:has(#namu:checked) .category-btn,
+        .card-container:has(#namu:checked) .category-item {
+            font-family: "Nanum Gothic", sans-serif;
+            font-size: 15px;
+        }
     </style>
 </head>
-<body>
-    <div class="site">
-     <div class="hea">
-        <img src="mascort.png">
-    <h1>거계치킨</h1>
-    <div >46년 전통의 거계치킨
-            언제나 정성을 다하며 변함없는 맛으로 보답하겠습니다.
-        </div>
-    </div>   
-    <hr>
-    <div class="left1">
-    <ul class="menu">
-       
-        <li class="menu1"><a href="#">거계메뉴</a></li>
-        <li class="menu1"><a href="#">공지사항</a></li>
-        <li class="menu1"><a href="#">창업문의</a></a></li>
-        <li class="menu1"><a href="#">매장찾기</a></li>
-    </ul>
-    <ul class="qn">
-        <li class="qn1" id="qn2">오시는길</li>
-        <li class="qn1">부산 중구 백양대로 1309번길 18</li>
-        <li class="qn1">전화번호</li>
-        <li class="qn1">051-987-6543</li>
-    </ul>
-    </div>
-    <div class="right1">
-        <img src="aaa.jpg">
-        <ul class="realmenu">
-            <li class="real1"><a href="spicy.html"><img src="yan.JPG"></a></li>
-            <li class="real1"><a href="fride.html"><img src="fri.JPG"></a></li>
-            <li class="real1"><a href="soy.html"><img src="soys.JPG"></a></li>
-            <li class="real1"><a href="yangan.html"><img src="yanban.JPG"></a></li>
-            <li class="real1"><a href="soyf.html"><img src="soyban.JPG"></a></li>
-            <li class="real1"><a href="spicyf.html"><img src="banban.jpg"></a></li>
-        </ul>
-        </div>
-        <div class="footer">
-            
+<body class="h-full">
 
-<hr color="black">
-             <img src="gray.png">
-        <ul class="last">
-            <li>(주)거계통닭</li>
-            <li> 사업자 등록번호 : 534 - 87 - 03724</li>
-            <li>fax : 051-656-4444</li>
-            <li>대표전화 : 010-6966-8888</li>
-        </ul>
+    <!-- 배경 파티클 효과 -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+        <div class="absolute -top-40 -left-40 w-96 h-96 bg-amber-900/10 rounded-full blur-3xl"></div>
+        <div class="absolute top-1/2 -right-40 w-96 h-96 bg-rose-900/10 rounded-full blur-3xl"></div>
+        <div id="particles-container" class="absolute inset-0"></div>
     </div>
-</div>
 
-  
+    <!-- 인트로 화면 오버레이 -->
+    <div id="intro-overlay" class="fixed inset-0 bg-[#0B0B0E] z-50 flex flex-col items-center justify-center p-6 text-center transition-opacity duration-1000">
+        <div class="max-w-xl space-y-8 text-lg sm:text-2xl font-light tracking-wide text-stone-200" style="font-family: 'Gowun Batang', serif;">
+            <div class="intro-text-1">미쳐 하지 못했던 말</div>
+            <div class="intro-text-2 text-stone-400">입밖으로 나오지 않았던 말</div>
+            <div class="intro-text-3 text-amber-200 font-normal text-xl sm:text-3xl">사랑합니다</div>
+            <div class="intro-text-4 text-rose-200 font-normal text-xl sm:text-3xl">고맙습니다</div>
+            <div class="intro-text-5 text-stone-400 text-sm sm:text-lg italic pt-4">글로나마 조심스레 표현해보세요</div>
+        </div>
+        <button onclick="skipIntro()" class="absolute bottom-12 text-xs sm:text-sm text-stone-500 hover:text-stone-300 underline underline-offset-4 transition-colors cursor-pointer">
+            건너뛰기 / Skip Intro &rarr;
+        </button>
+    </div>
+
+    <!-- 메인 콘텐츠 영역 -->
+    <div id="main-content" class="relative z-10">
+        <div class="card-container">
+            <div class="title">말하지 못한 진심을 전해보세요</div>
+            <div class="subtitle">원하시는 폰트를 선택하고 마음속 진심을 적어보세요.</div>
+
+            <!-- 폰트 선택 -->
+            <div class="font-selector-box">
+                <div class="font-option">
+                    <input type="radio" name="font" id="gaegu" checked>
+                    <label for="gaegu">Dongle 폰트</label>
+                </div>
+                <div class="font-option">
+                    <input type="radio" name="font" id="namu">
+                    <label for="namu">Nanum Gothic 폰트</label>
+                </div>
+            </div>
+
+            <!-- [변경됨] 받는 이보다 위쪽에 위치한 카테고리 선택 드롭다운 메뉴 -->
+            <div class="category-wrapper">
+                <div class="category-btn" id="categoryDisplay">
+                    <span>카테고리 선택 (친구 / 가족 / 직장동료)</span>
+                    <span>▼</span>
+                </div>
+                <div class="category-menu">
+                    <div class="category-item" onclick="selectCategory('친구')">친구</div>
+                    <div class="category-item" onclick="selectCategory('가족')">가족</div>
+                    <div class="category-item" onclick="selectCategory('직장동료')">직장동료</div>
+                </div>
+            </div>
+
+            <!-- 받는 이 -->
+            <textarea class="send" placeholder="받는 이"></textarea>
+
+            <!-- 내용 입력창 (본문) -->
+            <textarea class="textarea-box" id="msgContent" placeholder="마음속 진심을 적어보세요"></textarea>
+
+            <!-- 보내는 이 -->
+            <textarea class="from" placeholder="보내는 이" style="margin-top: 15px;"></textarea>
+
+            <!-- 저장 버튼 -->
+            <button class="save-btn">마음 보내기</button>
+        </div>
+    </div>
+
+    <script>
+        function initParticles() {
+            const container = document.getElementById('particles-container');
+            const count = 18;
+            for (let i = 0; i < count; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                const size = Math.random() * 3 + 1;
+                p.style.width = `${size}px`;
+                p.style.height = `${size}px`;
+                p.style.left = `${Math.random() * 100}%`;
+                p.style.animationDuration = `${Math.random() * 15 + 10}s`;
+                p.style.animationDelay = `${Math.random() * 5}s`;
+                container.appendChild(p);
+            }
+        }
+
+        let introTimer = setTimeout(() => { skipIntro(); }, 10500);
+
+        function skipIntro() {
+            clearTimeout(introTimer);
+            const intro = document.getElementById('intro-overlay');
+            const main = document.getElementById('main-content');
+            intro.classList.add('fade-out-screen');
+            setTimeout(() => {
+                intro.style.display = 'none';
+                main.style.opacity = '1';
+                document.body.style.overflowY = 'auto';
+            }, 1000);
+        }
+
+        // 카테고리 선택 시 표시 글자 변경 함수
+        function selectCategory(category) {
+            const display = document.getElementById('categoryDisplay').querySelector('span');
+            display.textContent = category;
+            display.style.color = '#ffffff';
+        }
+
+        window.onload = function() {
+            initParticles();
+        }
+    </script>
 </body>
 </html>
