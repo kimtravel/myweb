@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .he {
+            width: 800px;
+            height: 200px;
+            margin: 0 auto;
+        }
+
+        .he h1 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn {
+            list-style-type: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+
+
+        }
+
+        #demo {
+            width: 800px;
+            margin: 20px auto;
+        }
+    </style>
+
+
+
+
+
+</head>
+
+<body>
+    <header class="he">
+        <h1> 동물 </h1>
+        <ul class="btn">
+            <li id="btn1"><input type="button" value="개"></li>
+            <li id="btn2"><input type="button" value="고양이"></li>
+            <li id="btn3"><input type="button" value="우사기"></li>
+        </ul>
+    </header>
+
+    <hr>
+    <div id="demo"></div>
+    <script>
+
+        function DOOG() {
+            const xhttp = new XMLHttpRequest();
+            xhttp.open("GET", "dog.txt", false);
+
+            xhttp.onload = function () {
+                document.getElementById("demo").innerHTML = "<img src='dog.png' width='300'>" + xhttp.responseText;
+            };
+
+            xhttp.send();
+        }
+        const btn1 = document.getElementById('btn1');
+        btn1.addEventListener('click', DOOG);
+
+        function CAAT() {
+            const xhttp = new XMLHttpRequest();
+            xhttp.open("GET", "cat.txt", false);
+
+            xhttp.onload = function () {
+                document.getElementById("demo").innerHTML = "<img src='cat.png' width='300'>" + xhttp.responseText;
+            };
+
+            xhttp.send();
+        }
+        const btn2 = document.getElementById('btn2');
+        btn2.addEventListener('click', CAAT);
+
+        function Rabbitt() {
+            const xhttp = new XMLHttpRequest();
+            xhttp.open("GET", "rabbit.txt", false);
+
+            xhttp.onload = function () {
+                document.getElementById("demo").innerHTML = "<img src='rabbit.png' width='300'>" + xhttp.responseText;
+            };
+
+            xhttp.send();
+        }
+        const btn3 = document.getElementById('btn3');
+        btn3.addEventListener('click', Rabbitt);
+
+    </script>
+
+</body>
+
+</html>
